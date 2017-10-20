@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 
 export default class Login extends React.Component {
 
@@ -32,6 +33,7 @@ export default class Login extends React.Component {
           <input onChange={this.handleChange} name="username" type="text" placeholder="Enter Username" />
           <input onChange={this.handleChange} name="password" type="password" placeholder="Enter Password" />
           <button type="submit">Login</button>
+          <NavLink to="/signup">Sign Up</NavLink>
         </form>
       </div>
     )

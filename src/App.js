@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 import SessionsAdapter from './adapters/SessionsAdapter'
+import UsersAdapter from './adapters/UsersAdapter'
 import './App.css';
 import PropTypes from 'prop-types'
 
@@ -29,6 +30,14 @@ class App extends Component {
     .then( () => {
       this.context.router.history.push("/userhome")
     })
+  }
+
+  signUpUser = (user) => {
+    UsersAdapter.signUpUser(user)
+  }
+
+  renderSignUp = () => {
+    return <SignUp signUpUser={this.signUpUser} />
   }
 
   renderLogin = () => {
