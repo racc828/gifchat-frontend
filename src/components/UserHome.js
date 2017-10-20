@@ -3,6 +3,7 @@ import ChatRooms from './ChatRooms'
 import ChatRoom from './ChatRoom'
 import AddChatRoomForm from './AddChatRoomForm'
 import ChatRoomsAdapter from '../adapters/ChatRoomsAdapter'
+import MessagesAdapter from '../adapters/MessagesAdapter'
 
 export default class UserHome extends React.Component {
 
@@ -54,6 +55,15 @@ export default class UserHome extends React.Component {
     })
   }
 
+  addMessage = (message, chatId) => {
+    MessagesAdapter.addMessage(message, chatId)
+    .then(chatRoomData => {
+      this.setState({
+        activeChatRoom: chatRoomData
+      })
+    })
+  }
+
 
   render(){
     return(
@@ -63,7 +73,7 @@ export default class UserHome extends React.Component {
         {this.state.activeChat ?
         <div>
           <button onClick={this.resetActiveChat}> Back </button>
-          <ChatRoom activeChatRoom={this.state.activeChatRoom} />
+          <ChatRoom addMessage={this.addMessage} activeChatRoom={this.state.activeChatRoom} />
         </div> :
         <div>
           <AddChatRoomForm addChatRoom={this.addChatRoom} />
